@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/baniola-service-center'),
+      dir: require('path').join(__dirname, './coverage/baniola-services-center'),
       subdir: '.',
       reporters: [
         { type: 'html' },
