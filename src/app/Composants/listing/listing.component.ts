@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  users: any;
+  constructor() {
+    this.LoadAll();
   }
 
+  ngOnInit(): void {
+
+  }
+
+  LoadAll() {
+
+  }
+  delete() {
+    if (confirm("Voulez vous vraiment supprimer ?")) {
+
+    }
+  }
 }

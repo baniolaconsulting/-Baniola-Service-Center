@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-login',
@@ -15,9 +14,4 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  loginform = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
 }
