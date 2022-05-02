@@ -1,5 +1,5 @@
 <div class="card-box">
-  <form>
+  <form [formGroup]="Interventionform" (ngSubmit)="SaveIntervention()">
     <div class="row" style="text-align: center;display: block;">
       <h2>Ajouter/Modifier Intervention</h2>
     </div>
@@ -7,8 +7,8 @@
     <div class="row">
       <div class="offset-lg-3 col-lg-6">
         <div class="form-group">
-          <label>Code</label>
-          <input type="text" class="form-control" autocomplete="off" />
+          <label for="txtcode">Code</label>
+          <input type="text" id="txtcode" class="form-control" formControlName="code" autocomplete="off" />
           <span class="error">Entrer le code de l'intervention</span>
         </div>
       </div>
@@ -17,8 +17,8 @@
       <div class="offset-lg-3 col-lg-6">
         <div class="form-group">
           <label>Agent</label>
-          <input type="text" class="form-control" autocomplete="off" />
-          <span class="error">Entrer le nom de l'agent (Login)</span>
+          <input type="text" class="form-control" formControlName="agent" autocomplete="off" />
+          <span *ngIf="agent && agent.invalid && agent.touched" class="error">Entrer le nom de l'agent (Login)</span>
         </div>
       </div>
     </div>
@@ -27,8 +27,8 @@
       <div class="offset-lg-3 col-lg-6">
         <div class="form-group">
           <label>Client</label>
-          <input type="text" class="form-control" autocomplete="off" />
-          <span class="error">Entrer le nom du client</span>
+          <input type="text" class="form-control" formControlName="client" autocomplete="off" />
+          <span *ngIf="client && client.invalid && client.touched" class="error">Entrer le nom du client</span>
         </div>
       </div>
     </div>
@@ -36,8 +36,8 @@
       <div class="offset-lg-3 col-lg-6">
         <div class="form-group">
           <label>Véhicule</label>
-          <input type="text" class="form-control" autocomplete="off" />
-          <span class="error">Spécifier le véhicule</span>
+          <input type="text" class="form-control" formControlName="vehicule" autocomplete="off" />
+          <span *ngIf="vehicule && vehicule.invalid && vehicule.touched" class="error">Spécifier le véhicule</span>
         </div>
       </div>
     </div>
@@ -54,8 +54,8 @@
       <div class="offset-lg-3 col-lg-6">
         <div class="form-group">
           <label>Opérations</label>
-          <input type="text" class="form-control" autocomplete="off" />
-          <span class="error">Décrire les opérations</span>
+          <input type="text" class="form-control" formControlName="operation" autocomplete="off" />
+          <span *ngIf="operation && operation.invalid && operation.touched" class="error">Décrire les opérations</span>
         </div>
       </div>
     </div>
@@ -68,9 +68,8 @@
       </div>
       <div class="col-lg-3">
         <br>
-        <span></span>
+        <span class={{messageclass}}>{{message}}</span>
       </div>
     </div>
-
   </form>
 </div>
