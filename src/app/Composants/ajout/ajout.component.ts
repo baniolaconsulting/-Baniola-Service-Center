@@ -9,7 +9,6 @@ import {FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./ajout.component.css']
 })
 export class AjoutComponent implements OnInit {
-
   Interventiondata: any;
   saveresp: any;
   messageclass = '';
@@ -23,10 +22,8 @@ export class AjoutComponent implements OnInit {
     }
     this.LoadIntervention();
   }
-
   ngOnInit(): void {
   }
-
   UpdateIntervention(code: any) {
     this.service.LoadInterventionBycode(code).subscribe(result => {
       this.EditData = result;
@@ -41,7 +38,6 @@ export class AjoutComponent implements OnInit {
       }
     });
   }
-
   Interventionform = new FormGroup({
     code: new FormControl('', Validators.required),
     agent: new FormControl('', Validators.required),
@@ -49,34 +45,28 @@ export class AjoutComponent implements OnInit {
     vehicule: new FormControl('', Validators.required),
     operation: new FormControl('', Validators.required),
   });
-
   LoadIntervention() {
     this.service.LoadIntervention().subscribe(result => {
       this.Interventiondata = result;
     });
-
   }
   SaveIntervention() {
     if (this.Interventionform.valid) {
-
       this.service.SaveIntervention(this.Interventionform.value).subscribe(result => {
         this.saveresp = result;
         if (this.saveresp.result == 'pass') {
           this.message = "Ajouté avec succes"
           this.messageclass = 'sucess'
-
         } else {
           this.message = "Erreur"
           this.messageclass = 'error'
         }
-
       });
     } else {
       this.message = "Please enter valid data"
       this.messageclass = 'error'
     }
   }
-
   get agent() {
     return this.Interventionform.get('agent');
   }
