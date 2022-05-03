@@ -38,7 +38,6 @@ export class AjoutComponent implements OnInit {
           vehicule: new FormControl(this.EditData.vehicule),
           operation: new FormControl(this.EditData.operation),
         });
-
       }
     });
   }
@@ -90,5 +89,4 @@ export class AjoutComponent implements OnInit {
   get vehicule() {
     return this.Interventionform.get('vehicule');
   }
-
 }

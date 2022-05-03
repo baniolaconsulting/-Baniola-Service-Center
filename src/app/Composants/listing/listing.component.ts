@@ -8,7 +8,6 @@ import {InterventionsService} from "../../Services/interventions.service";
 })
 export class ListingComponent implements OnInit {
   InterventionData$: any;
-  users: any;
   constructor(private service: InterventionsService) {
     this.LoadAll();
   }
