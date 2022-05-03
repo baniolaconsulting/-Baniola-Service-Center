@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {InterventionsService} from "../../Services/interventions.service";
 
 @Component({
   selector: 'app-listing',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
+  InterventionData$: any;
   users: any;
-  constructor() {
+  constructor(private service: InterventionsService) {
     this.LoadAll();
   }
 
@@ -16,11 +18,15 @@ export class ListingComponent implements OnInit {
   }
 
   LoadAll() {
-
+    this.service.LoadAllInterventions().subscribe(result => {
+      this.InterventionData$ = result;
+    });
   }
-  delete() {
-    if (confirm("Voulez vous vraiment supprimer ?")) {
-
+  delete(code: any) {
+    if (confirm("Voulez vous supprimer ?")) {
+      this.service.RemoveInterventionBycode(code).subscribe(() => {
+        this.LoadAll();
+      });
     }
   }
 }
