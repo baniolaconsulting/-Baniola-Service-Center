@@ -63,7 +63,7 @@ export class AjoutComponent implements OnInit {
         }
       });
     } else {
-      this.message = "Please enter valid data"
+      this.message = "Entrer des informations valides"
       this.messageclass = 'error'
     }
   }

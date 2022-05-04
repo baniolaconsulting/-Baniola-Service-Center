@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from "../../Services/login.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -8,10 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   responsedata: any;
-  constructor() {
+  constructor(private service: LoginService) {
     localStorage.clear();
   }
-
   ngOnInit(): void {
+  }
+
+  loginform = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  });
+  Login() {
+    if (this.loginform.valid) {
+      this.service.Login(this.loginform.value).subscribe(result => {
+        this.responsedata = result;
+        if (this.responsedata != null) {
+          this.service.updatemenu.next();
+        } else {
+          alert("Verifier votre Login !");
+        }
+      });
+    }
   }
 }

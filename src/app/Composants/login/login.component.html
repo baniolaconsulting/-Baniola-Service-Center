@@ -3,7 +3,7 @@
     <div class="offset-lg-3 col-lg-6">
 
       <div class="card-box" style="background-color: #ccc;">
-        <form>
+        <form [formGroup]="loginform" (ngSubmit)="Login()">
 
 
           <div class="row" style="display: block;">
@@ -13,19 +13,21 @@
           <div class="row">
             <div class="offset-lg-3 col-lg-6">
               <div class="form-group">
-                <label for="txtname">Login</label>
-                <input type="text" id="txtname" class="form-control" placeholder="Entrer votre Login !"   autocomplete="off"  />
+                <label for="txtname">Nom d'utilisateur</label>
+                <input type="text" id="txtname" class="form-control" formControlName="username" placeholder="Entrer votre nom d'utilisateur !"   autocomplete="off"  />
               </div>
             </div>
           </div>
           <div class="row">
             <div class="offset-lg-3 col-lg-6">
               <div class="form-group">
-                <label for="txtpassword">Password</label>
-                <input type="text" id="txtpassword" class="form-control" placeholder="Entrer votre password !"  autocomplete="off"  />
+                <label for="txtpassword">Mot de passe</label>
+                <input type="text" id="txtpassword" class="form-control" formControlName="password"  placeholder="Entrer votre mot de passe !"  autocomplete="off"  />
               </div>
             </div>
           </div>
+
+
           <div class="row">
             <div class="offset-lg-3 col-lg-2">
               <br>
@@ -39,6 +41,7 @@
             </div>
           </div>
         </form>
+
       </div>
     </div>
   </div>
