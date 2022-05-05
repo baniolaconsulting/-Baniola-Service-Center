@@ -12,20 +12,20 @@ export class InterventionsService {
   constructor(private http:HttpClient) {
 
   }
-  LoadIntervention(){
+  ChargerIntervention(){
     return this.http.get(this.apiurl_interventions);
   }
 
-  LoadAllInterventions():Observable<object>{
+  ChargerTout():Observable<object>{
     return this.http.get(this.apiurl);
   }
-  LoadInterventionBycode(code:any){
+  ChargerInterventionParCode(code:any){
     return this.http.get(this.apiurl+'/'+code);
   }
-  RemoveInterventionBycode(code:any){
+  SupprimerInterventionParcode(code:any){
     return this.http.delete(this.apiurl+'/'+code);
   }
-  SaveIntervention(inputdata:any){
+  Enregistrer(inputdata:any){
     return this.http.post(this.apiurl,inputdata);
   }
 }

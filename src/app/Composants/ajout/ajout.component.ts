@@ -10,10 +10,10 @@ import {FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AjoutComponent implements OnInit {
   Interventiondata: any;
-  saveresp: any;
-  messageclass = '';
+  rep: any;
+  msg = '';
   message = '';
-  EditData: any;
+  modifData: any;
   Interventionid: any;
   constructor(private service: InterventionsService, private route: ActivatedRoute) {
     this.Interventionid = this.route.snapshot.paramMap.get('id');
@@ -25,15 +25,15 @@ export class AjoutComponent implements OnInit {
   ngOnInit(): void {
   }
   UpdateIntervention(code: any) {
-    this.service.LoadInterventionBycode(code).subscribe(result => {
-      this.EditData = result;
-      if (this.EditData != null) {
+    this.service.ChargerInterventionParCode(code).subscribe(result => {
+      this.modifData = result;
+      if (this.modifData != null) {
         this.Interventionform = new FormGroup({
-          code: new FormControl(this.EditData.code),
-          agent: new FormControl(this.EditData.agent),
-          client: new FormControl(this.EditData.client),
-          vehicule: new FormControl(this.EditData.vehicule),
-          operation: new FormControl(this.EditData.operation),
+          code: new FormControl(this.modifData.code),
+          agent: new FormControl(this.modifData.agent),
+          client: new FormControl(this.modifData.client),
+          vehicule: new FormControl(this.modifData.vehicule),
+          operation: new FormControl(this.modifData.operation),
         });
       }
     });
@@ -46,25 +46,25 @@ export class AjoutComponent implements OnInit {
     operation: new FormControl('', Validators.required),
   });
   LoadIntervention() {
-    this.service.LoadIntervention().subscribe(result => {
+    this.service.ChargerIntervention().subscribe(result => {
       this.Interventiondata = result;
     });
   }
   SaveIntervention() {
     if (this.Interventionform.valid) {
-      this.service.SaveIntervention(this.Interventionform.value).subscribe(result => {
-        this.saveresp = result;
-        if (this.saveresp.result == 'pass') {
+      this.service.Enregistrer(this.Interventionform.value).subscribe(result => {
+        this.rep = result;
+        if (this.rep.result == 'pass') {
           this.message = "Ajouté avec succes"
-          this.messageclass = 'sucess'
+          this.msg = 'sucess'
         } else {
           this.message = "Erreur"
-          this.messageclass = 'error'
+          this.msg = 'error'
         }
       });
     } else {
       this.message = "Entrer des informations valides"
-      this.messageclass = 'error'
+      this.msg = 'error'
     }
   }
   get agent() {

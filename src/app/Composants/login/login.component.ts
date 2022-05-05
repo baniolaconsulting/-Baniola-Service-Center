@@ -9,7 +9,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   ]
 })
 export class LoginComponent implements OnInit {
-  responsedata: any;
+  reponse: any;
   constructor(private service: LoginService) {
     localStorage.clear();
   }
@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   Login() {
     if (this.loginform.valid) {
       this.service.Login(this.loginform.value).subscribe(result => {
-        this.responsedata = result;
-        if (this.responsedata != null) {
+        this.reponse = result;
+        if (this.reponse != null) {
           this.service.updatemenu.next();
         } else {
           alert("Verifier votre Login !");

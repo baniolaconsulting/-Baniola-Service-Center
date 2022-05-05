@@ -17,13 +17,13 @@ export class ListingComponent implements OnInit {
   }
 
   LoadAll() {
-    this.service.LoadAllInterventions().subscribe(result => {
+    this.service.ChargerTout().subscribe(result => {
       this.InterventionData$ = result;
     });
   }
   delete(code: any) {
     if (confirm("Voulez vous supprimer ?")) {
-      this.service.RemoveInterventionBycode(code).subscribe(() => {
+      this.service.SupprimerInterventionParcode(code).subscribe(() => {
         this.LoadAll();
       });
     }
